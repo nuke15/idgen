@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>TWENNY WAN</title>
+	<meta charset="utf-8">
+	<style>
+		#wrapper {
+			perspective: 100em;
+		}
+		#deal {
+			display: none;
+			width: 560px;
+			height: 350px;
+			border: 1px solid #000000;
+			border-radius: 15px;
+			overflow: hidden;
+			font-family: Helvetica;
+			background-color: #FFFFFF;
+			font-weight: bold;
+
+			transform-style: preserve-3d;
+			transition: transform 2s, margin 2s, box-shadow 2s;
+		}
+		#deal:hover {
+			box-shadow: 10px 10px 50px rgba(0,0,0,0.25);
+			margin-left: 10em;
+			transform: rotateX(55deg) rotateZ(-40deg);
+			transition: transform 2s, margin 2s, box-shadow 2s;
+		}
+		#id {
+			width: 471px;
+			height: 342px;
+			margin-top: 1px;
+			position: relative;
+			color: #112B55;
+			font-size: 23px;
+		}
+		#name {
+			font-size: 45px;
+			position: absolute;
+			top: 238px;
+			left: 10px;
+		}
+		#name2 {
+			font-size: 45px;
+			position: absolute;
+			top: 290px;
+			left: 10px;
+		}
+		#school {
+			transform: rotate(-90deg);
+			position: absolute;
+			width: 238px;
+			top: 160px;
+			left: 360px;
+			color: #000000;
+		}
+		#buswrap {
+			color: #000000;
+			border: 2px solid #000000;
+			background-color: #FFFFFF;
+			display: inline;
+			position: absolute;
+			/*height: 30px;
+			width: 159px;*/
+			left: 210px;
+			top: 125px;
+			padding-left: 8px;
+			padding-right: 8px;
+			transform: rotate(-90deg);
+			font-family: arial;
+			font-size: 25px;
+		}
+		#bus {
+			display: inline;
+		}
+		#date {
+			position: absolute;
+			top: 5px;
+			left: 350px;
+			font-size: 20px;
+			font-family: arial;
+		}
+		#grade {
+			position: absolute;
+			text-align: center;
+			width: 120px;
+			font-size: 100px;
+			font-family: arial;
+			left: 335px;
+			top: 70px;
+		}
+		#bigr {
+			width: 52px;
+			height: 47px;
+			border: 2px solid #112B55;
+			position: absolute;
+			left: 374px;
+			top: 32px;
+		}
+		#pic {
+			position: absolute;
+			background-color: #00F;
+			border: 3px solid black;
+			display: inline;
+			left: 5px;
+			top: 5px;
+			width: 270px;
+			height: 225px;
+		}
+		#codewrap {
+			text-align: right;
+			position: absolute;
+			transform: rotate(-90deg);
+			left: 364px;
+			top: 144px;
+		}
+		#bctalTxt {
+			text-align: center;
+			width: 200px;
+			position: absolute;
+			left: 295px;
+			top: 170px;
+		}
+		//input {
+		//	width: 200px;
+		//}
+	</style>
+	<script type="text/javascript" src="code39.js"></script>
+	<script type="text/javascript">
+		function text() {
+			bctal();
+			var byId =
+				function(id) {
+					return document.getElementById(id);
+				}
+
+			//unhide id
+			byId("deal").style = "display: block;";
+			//take in data from text fields
+			byId("name").innerHTML = byId("nameinput").value.toUpperCase();
+			byId("name2").innerHTML = byId("nameinput2").value.toUpperCase();
+			//make sure grade is formatted correctly
+			if (byId("gradeinput").value == "09") {
+				byId("grade").innerHTML = "9";
+			} else {
+				byId("grade").innerHTML = byId("gradeinput").value;
+			}
+			//generate barcode
+			JsBarcode("#code", byId("numberInput").value, {displayValue: false, height: 48, margin: 0, width: 2.5});
+			previewFile();
+			console.log("epicly mode mcStylePants");
+		}
+		//function stolen from mozilla example code B)
+		function previewFile() {
+			var byId =
+				function(id) {
+					return document.getElementById(id);
+				}
+			var preview = byId("pic");
+			var file    = document.querySelector('input[type=file]').files[0];
+			var reader  = new FileReader();
+
+			reader.addEventListener("load", function () {
+				preview.src = reader.result;
+			}, false);
+
+			if (file) {
+				reader.readAsDataURL(file);
+			}
+		}
+		//bctal periods
+		function bctal() {
+			//uhhhhh urmom LOL!
+
+			//load the bctal periods into array
+			var bctalElement = [document.getElementById("a"), document.getElementById("b"), document.getElementById("c"), document.getElementById("d"), document.getElementById("e"), document.getElementById("f"), document.getElementById("g")];
+			//loop through and add periods
+			var bctalValues = [];
+			var i;
+			for (i = 0; i < bctalElement.length; i++) {
+			    if (bctalElement[i].checked == true) {
+			         switch(bctalElement[i].id) {
+			            case "a":
+			                bctalValues.push(1);
+			            break;
+			            case "b":
+			                bctalValues.push(2);
+			            break;
+			            case "c":
+			                bctalValues.push(3);
+			            break;
+			            case "d":
+			                bctalValues.push(4);
+			            break;
+			            case "e":
+			                bctalValues.push(5);
+			            break;
+			            case "f":
+			                bctalValues.push(6);
+			            break;
+			            case "g":
+			                bctalValues.push(7);
+			            break;
+			        }
+			    }
+			}
+			//build bctal string
+			var bctalString = "";
+			var j;
+			for (j = 0; j < bctalValues.length; j++) {
+			    bctalString += bctalValues[j];
+			    if (j < bctalValues.length - 1) {
+			        bctalString += ", ";
+			    }
+			}
+			//alerto
+			if (bctalValues.length > 0) {
+				document.getElementById("bctalTxt").innerHTML = "BCTAL<br>" + bctalString;
+				document.getElementById("bctalTxt").style = "display: block;";
+			} else {
+				document.getElementById("bctalTxt").style = "display: none;";
+			}
+		}
+
+	</script>
+</head>
+<body>
+	<h2>idgen 2020 v1.1</h2>
+	<div id="wrapper">
+		<div id="input">
+			<input id="nameinput" placeholder="first name"></input>
+			<br>
+			<input id="nameinput2" placeholder="last name"></input>
+			<br>
+			<input id="gradeinput" placeholder="grade"></input>
+			<br>
+			<input id="numberInput" placeholder="6-digit id number"></input>
+			<br>
+			BCTAL 1 <input id="a" type="checkbox">
+			<br>
+			BCTAL 2 <input id="b" type="checkbox">
+			<br>
+			BCTAL 3 <input id="c" type="checkbox">
+			<br>
+			BCTAL 4 <input id="d" type="checkbox">
+			<br>
+			BCTAL 5 <input id="e" type="checkbox">
+			<br>
+			BCTAL 6 <input id="f" type="checkbox">
+			<br>
+			BCTAL 7 <input id="g" type="checkbox">
+			<br>
+			<input id="imageinput" type="file"></input>
+			<br>
+			<button onclick="text();">submit</button>
+		</div>
+		<br>
+		<div id="deal">
+			<div id="id">
+				<img id="pic" src="&nbsp">
+				<div id="date">2020-2021</div>
+				<div id="school">Richland High School</div>
+				<img id="bigr" src="rhs.png">
+				<div id="name">NAME</div>
+				<div id="name2">NAME</div>
+				<div id="grade">00</div>
+				<div id="codewrap">
+					<svg id="code"></svg>
+				</div>
+				<div id="bctalTxt"></div>
+			</div>
+		</div>
+	</div>
+	<p>it is recommended that you use images of a 5:4 aspect ratio to avoid stretching.</p>
+	<p><b>changelog:</b><br>
+	v1.1 - added BCTAL periods, use the checkboxes!
+	<br><br>
+	v1 - newly made! based heavily off of last year's id generator</p>
+	<br>
+	<p>copyright 20120 max turpin</p>
+</body>
+</html>
