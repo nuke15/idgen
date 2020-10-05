@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<input id="busIn" type="text" placeholder="4-digit bus number">
+<input id="offPerIn" type="text" placeholder="off period">
+<button onclick="bruh()">go</button>
+
+<script>
+
+function bruh() {
+  if (document.getElementById("busIn").value != "") {
+    document.getElementById("bus").style = "display: block;";
+    document.getElementById("bus").innerHTML = "Bus No: " + document.getElementById("busIn").value;
+  } else {
+    document.getElementById("bus").style = "display: none;";
+  }
+  
+  if (document.getElementById("offPerIn").value != "") {
+    document.getElementById("off").style = "display: block;";
+    document.getElementById("off").innerHTML = "OFF PERIOD " + document.getElementById("offPerIn").value;
+
+  } else {
+    document.getElementById("off").style = "display: none;";
+  }
+}
+
+</script>
+
+<p id="bus">Bus No: </p>
+<p id="off">OFF PERIOD </p>
+
+</body>
+</html>
