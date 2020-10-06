@@ -88,7 +88,7 @@
 			font-size: 100px;
 			font-family: arial;
 			left: 335px;
-			top: 70px;
+			top: 75px;
 		}
 		#bigr {
 			width: 52px;
@@ -108,7 +108,7 @@
 			width: 270px;
 			height: 225px;
 		}
-        #bus {
+        	#bus {
 			display: inline;
 			position: absolute;
 			height: 30px;
@@ -135,6 +135,14 @@
 			left: 295px;
 			top: 170px;
 		}
+        #off {
+          color: #000;
+          position: absolute;
+          width: 250px;
+          font-size: 16px;
+          left: 335px;
+          top: 223px;
+        }
 		//input {
 		//	width: 200px;
 		//}
@@ -265,6 +273,8 @@
 			<br>
 			<input id="numberInput" placeholder="6-digit id number">
             <br>
+            <input id="imageinput" type="file">
+            <br>
             <p>optional :</p>
             <input id="busInput" placeholder="bus number">
             <br>
@@ -283,9 +293,7 @@
 			BCTAL 6 <input id="f" type="checkbox">
 			<br>
 			BCTAL 7 <input id="g" type="checkbox">
-			<br>
-			<input id="imageinput" type="file"></input>
-			<br>
+			<br><br>
 			<button onclick="text();">submit</button>
 		</div>
 		<br>
@@ -309,6 +317,8 @@
 	</div>
 	<p>it is recommended that you use images of a 5:4 aspect ratio to avoid stretching.</p>
 	<p><b>changelog:</b><br>
+    v1.2 - had to do a little 'field research,' but i got the off periods<br>and bus numbers added. everything under 'optional' should disapear if you don't put anything into it
+    <br><br>
 	v1.1 - added BCTAL periods, use the checkboxes!
 	<br><br>
 	v1 - newly made! based heavily off of last year's id generator</p>
