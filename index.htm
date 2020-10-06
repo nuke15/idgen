@@ -108,6 +108,19 @@
 			width: 270px;
 			height: 225px;
 		}
+        #bus {
+			display: inline;
+			position: absolute;
+			height: 30px;
+			width: 159px;
+			left: 210px;
+			top: 125px;
+			padding-left: 8px;
+			padding-right: 8px;
+			transform: rotate(-90deg);
+			font-family: arial;
+			font-size: 25px;
+		}
 		#codewrap {
 			text-align: right;
 			position: absolute;
@@ -146,6 +159,21 @@
 			} else {
 				byId("grade").innerHTML = byId("gradeinput").value;
 			}
+            //dynamic (optional part)
+            if (byId("busInput").value != "") {
+              byId("bus").style = "";
+              byId("bus").innerHTML = "Bus No: " + byId("busInput").value;
+            } else {
+              byId("bus").style = "display: none;";
+            }
+            
+            if (byId("offInput").value != "") {
+              byId("off").style = "";
+              byId("off").innerHTML = "OFF PERIOD " + byId("offInput").value;
+            } else {
+              byId("off").style = "display: none;";
+            }
+            
 			//generate barcode
 			JsBarcode("#code", byId("numberInput").value, {displayValue: false, height: 48, margin: 0, width: 2.5});
 			previewFile();
@@ -217,7 +245,7 @@
 			//alerto
 			if (bctalValues.length > 0) {
 				document.getElementById("bctalTxt").innerHTML = "BCTAL<br>" + bctalString;
-				document.getElementById("bctalTxt").style = "display: block;";
+				document.getElementById("bctalTxt").style = "";
 			} else {
 				document.getElementById("bctalTxt").style = "display: none;";
 			}
@@ -229,13 +257,18 @@
 	<h2>idgen 2020 v1.1</h2>
 	<div id="wrapper">
 		<div id="input">
-			<input id="nameinput" placeholder="first name"></input>
+			<input id="nameinput" placeholder="first name">
 			<br>
-			<input id="nameinput2" placeholder="last name"></input>
+			<input id="nameinput2" placeholder="last name">
 			<br>
-			<input id="gradeinput" placeholder="grade"></input>
+			<input id="gradeinput" placeholder="grade">
 			<br>
-			<input id="numberInput" placeholder="6-digit id number"></input>
+			<input id="numberInput" placeholder="6-digit id number">
+            <br>
+            <p>optional :</p>
+            <input id="busInput" placeholder="bus number">
+            <br>
+            <input id="offInput" placeholder="off period">
 			<br>
 			BCTAL 1 <input id="a" type="checkbox">
 			<br>
@@ -265,6 +298,8 @@
 				<div id="name">NAME</div>
 				<div id="name2">NAME</div>
 				<div id="grade">00</div>
+                <div id="bus">Bus No: </div>
+                <div id="off">OFF PERIOD</div>
 				<div id="codewrap">
 					<svg id="code"></svg>
 				</div>
