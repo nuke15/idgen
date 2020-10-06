@@ -88,7 +88,7 @@
 			font-size: 100px;
 			font-family: arial;
 			left: 335px;
-			top: 70px;
+			top: 75px;
 		}
 		#bigr {
 			width: 52px;
@@ -108,6 +108,19 @@
 			width: 270px;
 			height: 225px;
 		}
+        	#bus {
+			display: inline;
+			position: absolute;
+			height: 30px;
+			width: 159px;
+			left: 210px;
+			top: 125px;
+			padding-left: 8px;
+			padding-right: 8px;
+			transform: rotate(-90deg);
+			font-family: arial;
+			font-size: 25px;
+		}
 		#codewrap {
 			text-align: right;
 			position: absolute;
@@ -122,6 +135,14 @@
 			left: 295px;
 			top: 170px;
 		}
+        #off {
+          color: #000;
+          position: absolute;
+          width: 250px;
+          font-size: 16px;
+          left: 335px;
+          top: 223px;
+        }
 		//input {
 		//	width: 200px;
 		//}
@@ -146,6 +167,21 @@
 			} else {
 				byId("grade").innerHTML = byId("gradeinput").value;
 			}
+            //dynamic (optional part)
+            if (byId("busInput").value != "") {
+              byId("bus").style = "";
+              byId("bus").innerHTML = "Bus No: " + byId("busInput").value;
+            } else {
+              byId("bus").style = "display: none;";
+            }
+            
+            if (byId("offInput").value != "") {
+              byId("off").style = "";
+              byId("off").innerHTML = "OFF PERIOD " + byId("offInput").value;
+            } else {
+              byId("off").style = "display: none;";
+            }
+            
 			//generate barcode
 			JsBarcode("#code", byId("numberInput").value, {displayValue: false, height: 48, margin: 0, width: 2.5});
 			previewFile();
@@ -217,7 +253,7 @@
 			//alerto
 			if (bctalValues.length > 0) {
 				document.getElementById("bctalTxt").innerHTML = "BCTAL<br>" + bctalString;
-				document.getElementById("bctalTxt").style = "display: block;";
+				document.getElementById("bctalTxt").style = "";
 			} else {
 				document.getElementById("bctalTxt").style = "display: none;";
 			}
@@ -229,13 +265,20 @@
 	<h2>idgen 2020 v1.1</h2>
 	<div id="wrapper">
 		<div id="input">
-			<input id="nameinput" placeholder="first name"></input>
+			<input id="nameinput" placeholder="first name">
 			<br>
-			<input id="nameinput2" placeholder="last name"></input>
+			<input id="nameinput2" placeholder="last name">
 			<br>
-			<input id="gradeinput" placeholder="grade"></input>
+			<input id="gradeinput" placeholder="grade">
 			<br>
-			<input id="numberInput" placeholder="6-digit id number"></input>
+			<input id="numberInput" placeholder="6-digit id number">
+            <br>
+            <input id="imageinput" type="file">
+            <br>
+            <p>optional :</p>
+            <input id="busInput" placeholder="bus number">
+            <br>
+            <input id="offInput" placeholder="off period">
 			<br>
 			BCTAL 1 <input id="a" type="checkbox">
 			<br>
@@ -250,9 +293,7 @@
 			BCTAL 6 <input id="f" type="checkbox">
 			<br>
 			BCTAL 7 <input id="g" type="checkbox">
-			<br>
-			<input id="imageinput" type="file"></input>
-			<br>
+			<br><br>
 			<button onclick="text();">submit</button>
 		</div>
 		<br>
@@ -265,6 +306,8 @@
 				<div id="name">NAME</div>
 				<div id="name2">NAME</div>
 				<div id="grade">00</div>
+                <div id="bus">Bus No: </div>
+                <div id="off">OFF PERIOD</div>
 				<div id="codewrap">
 					<svg id="code"></svg>
 				</div>
@@ -274,6 +317,8 @@
 	</div>
 	<p>it is recommended that you use images of a 5:4 aspect ratio to avoid stretching.</p>
 	<p><b>changelog:</b><br>
+    v1.2 - had to do a little 'field research,' but i got the off periods<br>and bus numbers added. everything under 'optional' should disapear if you don't put anything into it
+    <br><br>
 	v1.1 - added BCTAL periods, use the checkboxes!
 	<br><br>
 	v1 - newly made! based heavily off of last year's id generator</p>
