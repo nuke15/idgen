@@ -14,7 +14,7 @@
 			border: 1px solid #000000;
 			border-radius: 15px;
 			overflow: hidden;
-			font-family: Helvetica;
+			font-family: arial;
 			background-color: #FFFFFF;
 			font-weight: bold;
 
@@ -36,15 +36,15 @@
 			font-size: 23px;
 		}
 		#name {
-			font-size: 45px;
+			font-size: 43px;
 			position: absolute;
-			top: 238px;
+			top: 248px;
 			left: 10px;
 		}
 		#name2 {
-			font-size: 45px;
+			font-size: 43px;
 			position: absolute;
-			top: 290px;
+			top: 295px;
 			left: 10px;
 		}
 		#school {
@@ -78,7 +78,7 @@
 			position: absolute;
 			top: 5px;
 			left: 350px;
-			font-size: 20px;
+			font-size: 22px;
 			font-family: arial;
 		}
 		#grade {
@@ -91,11 +91,11 @@
 			top: 75px;
 		}
 		#bigr {
-			width: 52px;
-			height: 47px;
+			width: 58px;
+			height: 52px;
 			border: 2px solid #112B55;
 			position: absolute;
-			left: 374px;
+			left: 370px;
 			top: 32px;
 		}
 		#pic {
@@ -105,16 +105,16 @@
 			display: inline;
 			left: 5px;
 			top: 5px;
-			width: 270px;
-			height: 225px;
+			width: 280px;
+			height: 234px;
 		}
-        	#bus {
+        #bus {
 			display: inline;
 			position: absolute;
 			height: 30px;
 			width: 159px;
-			left: 210px;
-			top: 125px;
+			left: 220px;
+			top: 140px;
 			padding-left: 8px;
 			padding-right: 8px;
 			transform: rotate(-90deg);
@@ -129,11 +129,12 @@
 			top: 144px;
 		}
 		#bctalTxt {
+			font-size: 23px;
 			text-align: center;
 			width: 200px;
 			position: absolute;
 			left: 295px;
-			top: 170px;
+			top: 173px;
 		}
         #off {
           color: #000;
@@ -141,7 +142,7 @@
           width: 250px;
           font-size: 16px;
           left: 335px;
-          top: 223px;
+          top: 230px;
         }
 		//input {
 		//	width: 200px;
@@ -252,7 +253,7 @@
 			}
 			//alerto
 			if (bctalValues.length > 0) {
-				document.getElementById("bctalTxt").innerHTML = "BCTAL<br>" + bctalString;
+				document.getElementById("bctalTxt").innerHTML = "BCTAL&nbsp;&nbsp;<br>" + bctalString;
 				document.getElementById("bctalTxt").style = "";
 			} else {
 				document.getElementById("bctalTxt").style = "display: none;";
@@ -262,7 +263,7 @@
 	</script>
 </head>
 <body>
-	<h2>idgen 2020 v1.1</h2>
+	<h2>idgen 2020 v1.2</h2>
 	<div id="wrapper">
 		<div id="input">
 			<input id="nameinput" placeholder="first name">
